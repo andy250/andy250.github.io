@@ -603,9 +603,9 @@ textarea {
 }
 
 #success {
-    position: absolute;
-    margin-top: -51px;
-    margin-left: 185px;
+    position: relative;
+    display: inline-block;
+    margin-left: 2em;
 }
 
 .success {
@@ -1132,4 +1132,8 @@ textarea {
     textarea {
         width: 100%;
     }
+}
+
+#contactform #success.err {
+    color: #FAB;
 }

@@ -13,15 +13,6 @@ $(document).ready(function() {
         "img/background4.jpg", "img/background5.jpg", "img/background6.jpg", "img/background9.jpg", "img/background7.jpg"
     ], { duration: 3500, fade: 750 });
 
-
-    $('#submit').click(function() {
-        $.post("send_form_email.php", $("#contactform").serialize(), function(response) {
-            $('#success').html(response);
-
-        });
-        return false;
-    });
-
     $(function() {
 
         $(".roll").css("opacity", "0");
@@ -174,14 +165,6 @@ $(document).ready(function() {
             $("#content").css('padding-top', '200px');
             $("#content").css('padding-bottom', '0px');
         }
-
-        // if(docScroll >= boxCntOfset7) {
-        // $("#content1").css('padding-top','100px');
-        // $("#content1").css('padding-bottom','100px');
-        // } else {
-        // $("#content1").css('padding-top','200px');
-        // $("#content1").css('padding-bottom','0px');
-        // }
 
         if (docScroll >= boxCntOfset8) {
             $("#content2").css('padding-top', '100px');

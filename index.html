@@ -258,8 +258,8 @@
                                 </p>
                                 <p id='p-submit'>
                                     <input id="submit" type="submit" name="submit" value="Send" class="button">
+                                    <span id="success">Test</span>
                                 </p>
-                                <div id="success"></div>
                             </form>
                         </div>
                     </div>
@@ -309,6 +309,41 @@
                         enabled: true
                     }
                 });
+
+                $('#contactform').on('submit', function(e) {
+                    e.preventDefault();
+
+                    var f = $(this);
+
+                    var e = $(this).find('[name=email]').val();
+                    var m = $(this).find('[name=message]').val();
+
+                    if (e && m) {
+                        $.ajax({
+                            url: "https://formspree.io/contact@alrakis.net",
+                            method: "POST",
+                            data: $(this).serialize(),
+                            dataType: "json",
+                            beforeSend: function() {
+                                f.find('#success').removeClass('err').html('<i class="fa fa-cog fa-spin"></i>&nbsp;Sending message...');
+                            },
+                            success: function(data) {
+                                f.find('#success').text('Message sent!');
+                                setTimeout(function() {
+                                    f.find('#success').text('');
+                                }, 3000);
+                            },
+                            error: function(err) {
+                                f.find('#success')
+                                    .text('Ops, there was an error when sending the message')
+                                    .toggleClass('err', true);
+                            }
+                        });
+                    } else {
+                        f.find('#success').toggleClass('err', true).text('Please provide your email and a message');
+                    }
+
+                })
             });
         </script>
         <script type="text/javascript">
